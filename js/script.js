@@ -63,8 +63,8 @@ class MapGame {
     this.villageArr = new Array();
   }
   addMonstersToVillage(village, monsterArr) {
-    const village = this.villageArr.find(village);
-    village.addMonsters(monsterArr);
+    const vil = this.villageArr.find(village);
+    village.addMonsters(vil);
   }
 
 }
@@ -87,7 +87,7 @@ const fight = (player, monster, village) => {
   player.isInFight = true;
 
   while (player.isInFight && player.health > 0 && monster.health > 0) {
-
+    console.log(`in fight: player.health = ${player.health} , monster.health = ${monster.health}`);
     monster.health -= 10;
     player.health -= 10;
 
@@ -171,10 +171,16 @@ const monsterArr = [
 
 const StartGame = () => {
   
-const playerName = prompt('Please enter your name:');
-const village = generateLocationVillage(locations[Math.random() * 6], monsterArr);
+// const playerName = prompt('Please enter your name:');
+// console.log(playerName);
+const village = generateLocationVillage('the village', monsterArr);
+console.log(village);
 const player = createPlayer(playerName);
+console.log(player);
 player.goToLocation(village.name);
-
+console.log(player);
+fight(player, village.monsterArr[0], village);
 
 }
+
+StartGame();

@@ -1,0 +1,58 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 62.5%;
+}
+
+body {
+  width: 100vw;
+  height: 400vh;
+}
+
+body div.main-menu,
+body div.location-menu,
+body div.shop-menu,
+body div.fight-zone{
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+body div.main-menu {
+  background-image: url(/img/menu-bg.png);
+  width: 100vw;
+  height: 100vh;
+
+}
+body div.location-menu {
+  background-color: lightseagreen;
+}
+body div.shop-menu {
+  background-color: cornflowerblue
+}
+body div.fight-zone {
+  background-color: yellowgreen;
+}
+.main-menu input {
+  padding: 15px 15px;
+  border: none;
+}
+
+.main-menu input:focus {
+  border: 2px solid coral;
+}
+.main-menu button {
+  padding: 15px 15px;
+  border: none;
+  font-weight: bold;
+}
+.main-menu button:hover {
+  color: white;
+  background-color: #333;
+}
