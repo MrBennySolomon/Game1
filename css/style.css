@@ -47,11 +47,13 @@ body div.fight-zone {
 .main-menu input:focus {
   border: 2px solid coral;
 }
+
 .main-menu button {
   padding: 15px 15px;
   border: none;
   font-weight: bold;
 }
+
 .main-menu button:hover {
   color: white;
   background-color: #333;
