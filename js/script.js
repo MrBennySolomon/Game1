@@ -1,19 +1,76 @@
 'use strict'
 
 class Player {
+  #name         = '';
+  #strength     = 0;
+  #defense      = 0;
+  #dexterity    = 0;
+  #gold         = 0;
+  #potion       = 0;
+  #level        = 0;
+  #health       = 0;
+  #xp           = 0;
+  #score        = 0;
+  #locationName = 0;
+  #isInFight    = 0;
+  
   constructor (name) {
-    this.name = name;
-    this.strength = 5;
-    this.defense = 50;
-    this.dexterity = 10;
-    this.gold = 10;
-    this.potion = 0;
-    this.level = 1;
-    this.health = 100;
-    this.xp = 0;
-    this.score = 0;
+    this.name         = name;
+    this.strength     = 5;
+    this.defense      = 50;
+    this.dexterity    = 10;
+    this.gold         = 10;
+    this.potion       = 0;
+    this.level        = 1;
+    this.health       = 100;
+    this.xp           = 0;
+    this.score        = 0;
     this.locationName = '';
-    this.isInFight = false;
+    this.isInFight    = false;
+  }
+
+  get strength () {
+    return this.strength;
+  }
+
+  set level (level) {
+    this.level = level;
+  }
+
+  get level () {
+    return this.level;
+  }
+
+  get name () {
+    return this.name;
+  }
+
+  set health (value) {
+    this.health = value;
+  }
+
+  set xp (value) {
+    this.xp = value;
+  }
+
+  set score (value) {
+    this.score = value;
+  }
+
+  get level () {
+    return this.level;
+  }
+
+  set level (value) {
+    this.level = value;
+  }
+
+  get name () {
+    return this.name;
+  }
+
+  get health () {
+    return this.health;
   }
 
   run () {
@@ -21,7 +78,7 @@ class Player {
     this.isInFight = false;
   }
 
-  goToLocation(locationName) {
+  set locationName(locationName) {
     this.locationName = locationName;
   }
 
@@ -32,21 +89,65 @@ class Player {
     }
   }
 }
-
 class Monster {
+  #name         = '';
+  #strength     = 0;
+  #defense      = 0;
+  #level        = 0;
+  #health       = 0;
+  #xp           = 0;
+  #dexterity    = 0;
+  #gold         = 0;
+  #score        = 0;
+  
   constructor (name, strength, defense, level, health, xp, dexterity, gold) {
-    this.name = name;
-    this.strength = strength;
-    this.defense = defense;
-    this.level = level;
-    this.health = health;
-    this.xp = xp;
-    this.dexterity = dexterity;
-    this.gold = gold;
-    this.score = 0;
+    this.name       = name;
+    this.strength   = strength;
+    this.defense    = defense;
+    this.level      = level;
+    this.health     = health;
+    this.xp         = xp;
+    this.dexterity  = dexterity;
+    this.gold       = gold;
+    this.score      = 0;
+  }
+
+  get name () {
+    return this.name;
+  }
+
+  get strength () {
+    return this.strength;
+  }
+
+  get defense () {
+    return this.defense;
+  }
+
+  get level () {
+    return this.level;
+  }
+
+  get health () {
+    return this.health;
+  }
+
+  get xp () {
+    return this.xp;
+  }
+
+  get dexterity () {
+    return this.dexterity;
+  }
+
+  get gold () {
+    return this.gold;
+  }
+
+  get score () {
+    return this.score;
   }
 }
-
 class Village {
   constructor (name, monsters) {
     this.name = name;
@@ -57,7 +158,6 @@ class Village {
     this.monsterArr = monsterArr;
   }
 }
-
 class MapGame {
   constructor () {
     this.villageArr = new Array();
@@ -66,21 +166,8 @@ class MapGame {
     const vil = this.villageArr.find(village);
     village.addMonsters(vil);
   }
-
 }
 
-
-// fight - while player life bigger than 0 and monster life bigger than 0:
-// attack or
-// drink potion or
-// run away
-// buyPotion: 
-// if player gold bigger than potion price:
-// add potion to player inventory
-// updateXp - get xp from monster - add to player XP. if player level up:
-// levelUp - update player level. if level is % 3 ==0, add points to player specs.
-// updateGold - get gold from monster, update players gold.
-// and any other function you want.
 
 
 const fight = (player, monster, village) => {
@@ -90,13 +177,11 @@ const fight = (player, monster, village) => {
     console.log(`in fight: player.health = ${player.health} , monster.health = ${monster.health}`);
     monster.health -= 10;
     player.health -= 10;
-
-
   }
 }
 
 const WhoWillStartFighting = (player, monster) => {
-  return player.dexterity * player.xp * player.level > monster.dexterity * monster.xp * monster.level ?player : monster;
+  return player.dexterity * player.xp * player.level > monster.dexterity * monster.xp * monster.level ? player : monster;
 }
 
 const playerWin = function (player, monster) {
@@ -158,7 +243,7 @@ const locations = [
   'the scary',
   'Mim',
   'ragnarok',
-  'bogo'
+  'bogo village'
 ]
 
 const monsterArr = [
@@ -169,18 +254,17 @@ const monsterArr = [
   generateMonster('Doomfoot', 24, 28, 5, 100, 30, 40, 60)
 ];
 
-const StartGame = () => {
-  
-// const playerName = prompt('Please enter your name:');
-// console.log(playerName);
-const village = generateLocationVillage('the village', monsterArr);
-console.log(village);
-const player = createPlayer(playerName);
-console.log(player);
-player.goToLocation(village.name);
-console.log(player);
-fight(player, village.monsterArr[0], village);
-
+const startGame = () => {
+  const playerName = prompt('Please enter your name:');
+  console.log(playerName);
+  const village = generateLocationVillage('the village', monsterArr);
+  console.log(village);
+  const player = createPlayer(playerName);
+  console.log(player);
+  player.locationName = village.name;
+  console.log(player);
+  fight(player, village.monsterArr[0], village);
 }
 
-StartGame();
+startGame();
+
